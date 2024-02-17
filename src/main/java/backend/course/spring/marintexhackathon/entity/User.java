@@ -1,9 +1,11 @@
 package backend.course.spring.marintexhackathon.entity;
 
 import backend.course.spring.marintexhackathon.entity.base_entity.BaseEntity;
-import jakarta.persistence.Entity;
+import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
+
+import java.util.List;
 
 @Getter
 @Setter
@@ -12,8 +14,18 @@ import lombok.experimental.FieldDefaults;
 @AllArgsConstructor
 @NoArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
+@Table(name = "users")
 public class User extends BaseEntity {
-    String UserName;
     String email;
     String password;
+
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    List<Post> posts;
+
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    List<Comment> comments;
+
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    List<Ship> ships;
+
 }

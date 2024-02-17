@@ -1,11 +1,11 @@
 package backend.course.spring.marintexhackathon.entity;
 
 import backend.course.spring.marintexhackathon.entity.base_entity.BaseEntity;
-import jakarta.persistence.Entity;
+import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
-import java.lang.reflect.Array;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Getter
@@ -16,10 +16,15 @@ import java.util.List;
 @NoArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class Post extends BaseEntity {
-    Integer AuthorID;
-    Integer LikeCNT;
-    Integer DisLikeCNT;
-    String AuthorUserName;
-    String Content;
+    LocalDateTime duringPeriod;
+    LocalDateTime fullPeriod;
+    double amountFuel;
+    String description;
+
+    @OneToMany(fetch = FetchType.EAGER, cascade = {CascadeType.REFRESH, CascadeType.MERGE})
     List<Comment> comments;
+
+    @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.REFRESH, CascadeType.MERGE})
+    User user;
+
 }
