@@ -27,11 +27,8 @@ public class User extends BaseEntity implements UserDetails {
     String email;
     String password;
 
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     List<Post> posts;
-
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    List<Comment> comments;
 
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     List<Monitoring> monitorings;
