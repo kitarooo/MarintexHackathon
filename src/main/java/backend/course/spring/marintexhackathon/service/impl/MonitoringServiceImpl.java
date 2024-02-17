@@ -29,7 +29,9 @@ public class MonitoringServiceImpl implements MonitoringService {
                 .electricity(monitoringRequest.getElectricity())
                 .fuel(monitoringRequest.getFuel())
                 .solarBattery(monitoringRequest.getSolarBattery())
-                .createdDate(LocalDate.now()).build();
+                .createdDate(LocalDate.now())
+                .ship(monitoringRequest.getShip())
+                .build();
 
 
         user.getMonitorings().add(monitoring);
@@ -55,6 +57,7 @@ public class MonitoringServiceImpl implements MonitoringService {
                 .solarBattery(monitor.getSolarBattery())
                 .createdDate(monitor.getCreatedDate())
                 .electricity(monitor.getElectricity())
+                .ship(monitor.getShip())
                 .build();
     }
 

@@ -1,6 +1,7 @@
 package backend.course.spring.marintexhackathon.entity;
 
 import backend.course.spring.marintexhackathon.entity.base_entity.BaseEntity;
+import backend.course.spring.marintexhackathon.enums.Ship;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
@@ -20,4 +21,7 @@ public class Monitoring extends BaseEntity {
     double solarBattery;
     double electricity;
     LocalDate createdDate;
+
+    @Enumerated(EnumType.STRING)
+    Ship ship;
 }

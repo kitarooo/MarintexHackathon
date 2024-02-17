@@ -1,5 +1,8 @@
 package backend.course.spring.marintexhackathon.dto.request;
 
+import backend.course.spring.marintexhackathon.enums.Ship;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
@@ -17,4 +20,6 @@ public class MonitoringRequest {
     double electricity;
     LocalDate createdDate;
 
+    @Enumerated(EnumType.STRING)
+    Ship ship;
 }
