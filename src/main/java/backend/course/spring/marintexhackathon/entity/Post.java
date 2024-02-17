@@ -20,6 +20,7 @@ public class Post extends BaseEntity {
     LocalDateTime fullPeriod;
     double amountFuel;
     String description;
+    //merge
 
     @OneToMany(fetch = FetchType.EAGER, cascade = {CascadeType.REFRESH, CascadeType.MERGE})
     List<Comment> comments;
