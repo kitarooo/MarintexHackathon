@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ShipService {
@@ -18,6 +19,10 @@ public class ShipService {
 
     public List<Ship> findAllShips() {
         return shipRepository.findAll();
+    }
+
+    public Optional<Ship> findShipByID(long id){
+        return  shipRepository.findById(id);
     }
 
     public Ship saveShip(Ship ship) {

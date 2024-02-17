@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/ships")
@@ -18,7 +19,18 @@ public class ShipController {
     public ShipController(ShipService shipService) {
         this.shipService = shipService;
     }
+    @GetMapping("/get")
+    public ResponseEntity<List<Ship>> getAllShips() {
+        List<Ship> ships = shipService.findAllShips();
+        return ResponseEntity.ok(ships);
+    }
 
+    @GetMapping("/get{id}")
+    public ResponseEntity<Ship> getShipByID(@PathVariable long id) {
+        return shipService.findShipByID(id)
+                .map(ResponseEntity::ok)
+                .orElseGet(() -> ResponseEntity.notFound().build());
+    }
 
 
     @PostMapping("/create")
