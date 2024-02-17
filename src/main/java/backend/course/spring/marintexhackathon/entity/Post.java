@@ -14,6 +14,7 @@ import java.util.List;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
+@Table(name = "posts")
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class Post extends BaseEntity {
     LocalDateTime duringPeriod;

@@ -1,10 +1,7 @@
 package backend.course.spring.marintexhackathon.entity;
 
 import backend.course.spring.marintexhackathon.entity.base_entity.BaseEntity;
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
@@ -14,6 +11,7 @@ import lombok.experimental.FieldDefaults;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
+@Table(name = "comments")
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class Comment extends BaseEntity {
     String description;
