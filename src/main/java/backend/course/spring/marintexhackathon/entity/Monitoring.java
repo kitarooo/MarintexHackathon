@@ -13,9 +13,10 @@ import java.time.LocalDate;
 @Getter
 @Setter
 @FieldDefaults(level = AccessLevel.PRIVATE)
+@Builder
 public class Monitoring extends BaseEntity {
-    double fuel_amount;
-    double solar_battery;
+    double fuelAmount;
+    double solarBattery;
     double electricity;
-    LocalDate date;
+    LocalDate createdDate;
 }
