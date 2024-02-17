@@ -36,6 +36,9 @@ public class User extends BaseEntity implements UserDetails {
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     List<Ship> ships;
 
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    List<Monitoring> monitorings;
+
     @Enumerated(EnumType.STRING)
     Role role;
 
