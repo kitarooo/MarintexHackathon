@@ -6,8 +6,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class MarintexHackathonApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(MarintexHackathonApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(MarintexHackathonApplication.class, args);
+    }
 
 }
