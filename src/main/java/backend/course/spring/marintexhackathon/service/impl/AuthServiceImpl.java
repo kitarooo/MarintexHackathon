@@ -58,7 +58,7 @@ public class AuthServiceImpl implements AuthService {
                     .refreshToken(refreshToken)
                     .build();
         } else {
-            throw new BaseException("Вы не зарегистрированы или неправильные данные!");
+            throw new BaseException("Имя пользователя или пароль введены неправильно!");
         }
     }
 

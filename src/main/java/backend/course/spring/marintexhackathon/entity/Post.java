@@ -17,6 +17,7 @@ import java.util.List;
 @Table(name = "posts")
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class Post extends BaseEntity {
+    String title;
     LocalDateTime duringPeriod;
     LocalDateTime fullPeriod;
     double amountFuel;
