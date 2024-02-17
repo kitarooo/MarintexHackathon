@@ -13,8 +13,6 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
-import java.util.List;
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -28,9 +26,9 @@ public class MonitoringServiceImpl implements MonitoringService {
         User user = getAuthUser();
 
         Monitoring monitoring = Monitoring.builder()
+                .electricity(monitoringRequest.getElectricity())
                 .fuel(monitoringRequest.getFuel())
                 .solarBattery(monitoringRequest.getSolarBattery())
-                .electricity(monitoringRequest.getElectricity())
                 .createdDate(LocalDate.now()).build();
 
 
@@ -39,18 +37,24 @@ public class MonitoringServiceImpl implements MonitoringService {
         userRepository.save(user);
         monitoringRepository.save(monitoring);
 
-        return "Мониторинг успешно создан!";
+        if(monitoring.getFuel() >= 100 || monitoring.getElectricity() >= 100 || monitoring.getSolarBattery() >= 100) {
+            return "Вы исчерпали энергии больше нормы!";
+        } else {
+            return "Мониторинг успешно создан!";
+        }
     }
 
     @Override
     public MonitoringResponse getMonitoringResponse(Long id) {
-        Monitoring monitor = monitoringRepository.findById(id).orElseThrow(() -> new NotFoundException("мониторинг не найден!"));
+        Monitoring monitor = monitoringRepository.findById(id)
+                .orElseThrow(() -> new NotFoundException("мониторинг не найден!"));
 
         return MonitoringResponse.builder()
                 .id(monitor.getId())
                 .fuel(monitor.getFuel())
                 .solarBattery(monitor.getSolarBattery())
                 .createdDate(monitor.getCreatedDate())
+                .electricity(monitor.getElectricity())
                 .build();
     }
 

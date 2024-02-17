@@ -20,7 +20,4 @@ public class Monitoring extends BaseEntity {
     double solarBattery;
     double electricity;
     LocalDate createdDate;
-
-    @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE,CascadeType.REFRESH})
-    User user;
 }
