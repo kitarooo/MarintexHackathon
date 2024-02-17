@@ -13,6 +13,8 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -59,6 +61,25 @@ public class MonitoringServiceImpl implements MonitoringService {
                 .electricity(monitor.getElectricity())
                 .ship(monitor.getShip())
                 .build();
+    }
+
+    @Override
+    public List<MonitoringResponse> findAll() {
+        List<Monitoring> monitorings = monitoringRepository.findAll();
+        List<MonitoringResponse> result = new ArrayList<>();
+
+        for (Monitoring monitoring : monitorings) {
+            result.add(MonitoringResponse.builder()
+                    .id(monitoring.getId())
+                    .ship(monitoring.getShip())
+                    .solarBattery(monitoring.getSolarBattery())
+                    .fuel(monitoring.getFuel())
+                    .electricity(monitoring.getElectricity())
+                    .createdDate(monitoring.getCreatedDate())
+                    .build());
+        }
+
+        return result;
     }
 
     private User getAuthUser() {

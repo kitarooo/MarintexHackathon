@@ -7,6 +7,8 @@ import backend.course.spring.marintexhackathon.service.impl.MonitoringServiceImp
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @CrossOrigin
 @RequestMapping("/api/v1/monitorings")
@@ -23,5 +25,10 @@ public class MonitoringController {
     @GetMapping("/{id}")
     public MonitoringResponse getMonitoring(@PathVariable Long id){
         return monitoringService.getMonitoringResponse(id);
+    }
+
+    @GetMapping("/getAll")
+    public List<MonitoringResponse> getAll() {
+        return monitoringService.findAll();
     }
 }
