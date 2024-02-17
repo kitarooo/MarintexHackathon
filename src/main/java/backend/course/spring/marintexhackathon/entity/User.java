@@ -1,6 +1,7 @@
 package backend.course.spring.marintexhackathon.entity;
 
 import backend.course.spring.marintexhackathon.entity.base_entity.BaseEntity;
+import backend.course.spring.marintexhackathon.enums.Role;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
@@ -28,4 +29,6 @@ public class User extends BaseEntity {
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     List<Ship> ships;
 
+    @Enumerated(EnumType.STRING)
+    Role role;
 }
