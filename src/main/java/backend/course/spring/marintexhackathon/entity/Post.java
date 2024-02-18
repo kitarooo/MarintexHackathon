@@ -25,7 +25,6 @@ public class Post extends BaseEntity {
     LocalDate finish;
     double amountFuel;
     String description;
-    boolean isPublic;
 
     @Enumerated(EnumType.STRING)
     Status status;

@@ -36,7 +36,6 @@ public class PostServiceImpl implements PostService {
                 .status(request.getStatus())
                 .start(request.getStart())
                 .finish(request.getFinish())
-                .isPublic(request.isPublic())
                 .build();
 
         user.getPosts().add(post);
@@ -57,7 +56,6 @@ public class PostServiceImpl implements PostService {
                 .status(post.getStatus())
                 .start(post.getStart())
                 .finish(post.getFinish())
-                .isPublic(post.isPublic())
                 .build();
     }
 
@@ -67,17 +65,18 @@ public class PostServiceImpl implements PostService {
         List<PostResponse> result = new ArrayList<>();
 
         for (Post post : posts) {
-            if (post.getStatus() == Status.PUBLIC && post.isPublic()) {
+            if (post.getStatus() == Status.PUBLIC) {
                 result.add(PostResponse.builder()
-                                .title(post.getTitle())
-                                .description(post.getDescription())
-                                .amountFuel(post.getAmountFuel())
-                                .start(post.getStart())
-                                .finish(post.getFinish())
-                                .status(post.getStatus())
-                                .build());
+                        .id(post.getId())
+                        .title(post.getTitle())
+                        .description(post.getDescription())
+                        .amountFuel(post.getAmountFuel())
+                        .start(post.getStart())
+                        .finish(post.getFinish())
+                        .status(post.getStatus())
+                        .build());
             } else {
-                throw new BaseException("Посты не найден!");
+                continue;
             }
         }
 
