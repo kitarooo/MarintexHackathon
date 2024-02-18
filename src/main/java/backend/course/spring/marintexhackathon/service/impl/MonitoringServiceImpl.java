@@ -41,7 +41,7 @@ public class MonitoringServiceImpl implements MonitoringService {
         userRepository.save(user);
         monitoringRepository.save(monitoring);
 
-        if(monitoring.getFuel() >= 100 || monitoring.getElectricity() >= 100 || monitoring.getSolarBattery() >= 100) {
+        if (monitoring.getFuel() >= 100 || monitoring.getElectricity() >= 100 || monitoring.getSolarBattery() >= 100) {
             return "Вы исчерпали энергии больше нормы!";
         } else {
             return "Мониторинг успешно создан!";
@@ -61,6 +61,7 @@ public class MonitoringServiceImpl implements MonitoringService {
                 .electricity(monitor.getElectricity())
                 .ship(monitor.getShip())
                 .build();
+
     }
 
     @Override
@@ -85,5 +86,4 @@ public class MonitoringServiceImpl implements MonitoringService {
     private User getAuthUser() {
         return (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
     }
-
 }
