@@ -16,12 +16,12 @@ import java.util.List;
 @NoArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class PostResponse {
+    Long id;
     String title;
     LocalDate start;
     LocalDate finish;
     double amountFuel;
     String description;
-    boolean isPublic;
 
     @Enumerated(EnumType.STRING)
     Status status;
