@@ -50,6 +50,7 @@ public class PostServiceImpl implements PostService {
         Post post = postRepository.findById(id).orElseThrow(() -> new NotFoundException("Пост не найден!"));
 
         return PostResponse.builder()
+                .id(post.getId())
                 .title(post.getTitle())
                 .description(post.getDescription())
                 .amountFuel(post.getAmountFuel())
@@ -107,6 +108,27 @@ public class PostServiceImpl implements PostService {
         postRepository.delete(post);
 
         return "Пост успешно удален!";
+    }
+
+    @Override
+    public List<PostResponse> getPostsByUser() {
+        User user = getAuthUser();
+        List<PostResponse> result = new ArrayList<>();
+
+        for (Post post : user.getPosts()) {
+            result.add(PostResponse.builder()
+                            .id(post.getId())
+                            .title(post.getTitle())
+                            .description(post.getDescription())
+                            .status(post.getStatus())
+                            .amountFuel(post.getAmountFuel())
+                            .start(post.getStart())
+                            .finish(post.getFinish())
+                            .username(user.getUsername())
+                            .build());
+        }
+
+        return result;
     }
 
     private User getAuthUser() {

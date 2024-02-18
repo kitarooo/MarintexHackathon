@@ -40,4 +40,9 @@ public class PostController {
         return postService.getAllIfPublic();
     }
 
+    @GetMapping("/get")
+    public List<PostResponse> getMyPosts() {
+        return postService.getPostsByUser();
+    }
+
 }

@@ -11,4 +11,5 @@ public interface PostService {
     List<PostResponse> getAllIfPublic();
     String updatePostById(Long id, PostRequest request);
     String deletePostById(Long id);
+    List<PostResponse> getPostsByUser();
 }

@@ -22,6 +22,7 @@ public class PostResponse {
     LocalDate finish;
     double amountFuel;
     String description;
+    String username;
 
     @Enumerated(EnumType.STRING)
     Status status;
